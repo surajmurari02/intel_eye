@@ -1,12 +1,28 @@
-import 'package:flutter/material.dart';
+import 'dart:async';
 
-class SplashScreen extends StatelessWidget {
+import 'package:flutter/material.dart';
+import 'package:intel_eye/views/screens/home_screen.dart';
+
+class SplashScreen extends StatefulWidget {
+  static const routeName = '/splashScreen';
   const SplashScreen({super.key});
 
-  // @override
-  // void init() {
-  //   super.init();
-  // }
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+    screenDelay();
+  }
+
+  screenDelay() {
+    Timer(Duration(seconds: 3), () {
+      Navigator.popAndPushNamed(context, HomeScreen.routeName);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,11 +33,19 @@ class SplashScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              CircleAvatar(
-                minRadius: width * 0.17,
-                backgroundImage: AssetImage(""),
+              Container(
+                width: width * 0.25,
+                height: width * 0.25,
+                decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.white,
+                    image: DecorationImage(
+                        image: AssetImage(
+                          "assets/logo/logo.png",
+                        ),
+                        fit: BoxFit.contain)),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 40,
               ),
               Text(

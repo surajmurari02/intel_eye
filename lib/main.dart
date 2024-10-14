@@ -13,12 +13,13 @@ class IntelEye extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(),
-      initialRoute: '/',
+      initialRoute: SplashScreen.routeName,
       routes: {
-        '/': (context) => SplashScreen(),
-        '/homepage': (context) => HomeScreen(),
-        'extendedScreen': (context) => ExtendedView(),
+        SplashScreen.routeName: (context) => SplashScreen(),
+        HomeScreen.routeName: (context) => HomeScreen(),
+        ExtendedView.routeName: (context) => ExtendedView(),
       },
     );
   }
