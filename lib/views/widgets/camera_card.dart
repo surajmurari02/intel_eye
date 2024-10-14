@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:intel_eye/views/screens/extended_view.dart';
 
 class CameraCard extends StatefulWidget {
-  const CameraCard({super.key});
+  const CameraCard({super.key, required this.camera});
+  final String camera;
 
   @override
   State<CameraCard> createState() => _CameraCardState();
@@ -14,56 +16,64 @@ class _CameraCardState extends State<CameraCard> {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
-    return Container(
-      width: width,
-      decoration: BoxDecoration(
-          border: Border(bottom: BorderSide(color: Colors.white, width: 0.5))),
-      margin: EdgeInsets.all(15),
-      child: Row(
-        // mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          Expanded(
-              flex: 1,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Image(
-                    image: AssetImage("assets/img/camera_view1.png"),
-                    height: 50,
-                  ),
-                  Text("3"),
-                ],
-              )),
-          Expanded(
-              flex: 1,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Transform.scale(
-                    scale: 0.6,
-                    child: Switch(
-                      value: lightButton,
-                      onChanged: (val) {
-                        setState(() {
-                          lightButton = val;
-                        });
-                      },
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(context, ExtendedView.routeName,
+            arguments: {"cam": widget.camera});
+      },
+      child: Container(
+        width: width,
+        decoration: BoxDecoration(
+            border:
+                Border(bottom: BorderSide(color: Colors.white, width: 0.5))),
+        margin: EdgeInsets.all(15),
+        child: Row(
+          // mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Expanded(
+                flex: 1,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Image(
+                      image: AssetImage(
+                          "assets/img/camera_view${widget.camera}.png"),
+                      height: 50,
                     ),
-                  ),
-                  Transform.scale(
-                    scale: 0.6,
-                    child: Switch(
-                      value: alarmButton,
-                      onChanged: (val) {
-                        setState(() {
-                          alarmButton = val;
-                        });
-                      },
+                    Text("3"),
+                  ],
+                )),
+            Expanded(
+                flex: 1,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Transform.scale(
+                      scale: 0.6,
+                      child: Switch(
+                        value: lightButton,
+                        onChanged: (val) {
+                          setState(() {
+                            lightButton = val;
+                          });
+                        },
+                      ),
                     ),
-                  ),
-                ],
-              ))
-        ],
+                    Transform.scale(
+                      scale: 0.6,
+                      child: Switch(
+                        value: alarmButton,
+                        onChanged: (val) {
+                          setState(() {
+                            alarmButton = val;
+                          });
+                        },
+                      ),
+                    ),
+                  ],
+                ))
+          ],
+        ),
       ),
     );
   }

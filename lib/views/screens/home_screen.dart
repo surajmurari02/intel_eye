@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intel_eye/utils/camera_data.dart';
 import 'package:intel_eye/views/widgets/camera_card.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -56,9 +57,11 @@ class HomeScreen extends StatelessWidget {
           Divider(),
           Expanded(
             child: ListView.builder(
-                itemCount: 9,
+                itemCount: cameraData.length,
                 itemBuilder: (ctx, index) {
-                  return CameraCard();
+                  return CameraCard(
+                    camera: cameraData[index],
+                  );
                 }),
           )
         ],
