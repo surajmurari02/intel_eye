@@ -22,6 +22,7 @@ class ExtendedView extends StatelessWidget {
               height: 20,
             ),
             Text("Notifications"),
+            Divider(),
             Expanded(
               child: ListView.separated(
                 itemCount: 4,
