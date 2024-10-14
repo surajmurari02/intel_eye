@@ -31,15 +31,36 @@ class HomeScreen extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              SizedBox(
-                width: width * 0.22,
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15),
+                      child: Text("Camera"),
+                    ),
+                    Text("Notification"),
+                  ],
+                ),
+                flex: 1,
               ),
-              Text("Notification"),
-              Text("Light"),
-              Text("Alarm")
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [Text("Light"), Text("Alarm")],
+                ),
+                flex: 1,
+              )
             ],
           ),
-          CameraCard()
+          Divider(),
+          Expanded(
+            child: ListView.builder(
+                itemCount: 9,
+                itemBuilder: (ctx, index) {
+                  return CameraCard();
+                }),
+          )
         ],
       ),
     );
